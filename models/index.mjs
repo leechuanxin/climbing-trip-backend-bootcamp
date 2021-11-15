@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 import allConfig from '../config/config.js';
 
+import initUserModel from './user.mjs';
 import initRouteModel from './route.mjs';
 import initTripModel from './trip.mjs';
 
@@ -10,12 +11,13 @@ const config = allConfig[env];
 
 const db = {};
 
-let sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 // add your model definitions to db here
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.User = initUserModel(sequelize, Sequelize.DataTypes);
 db.Route = initRouteModel(sequelize, Sequelize.DataTypes);
 db.Trip = initTripModel(sequelize, Sequelize.DataTypes);
 
