@@ -13,8 +13,12 @@ export default function bindRoutes(app) {
   const SignupController = initSignupController(db);
   const LoginController = initLoginController(db);
 
+  // ROUTES
   app.get('/routes', RoutesController.index);
+
+  // TRIP
   app.get('/trips', TripsController.index);
+  app.post('/createtrip', TripsController.create);
 
   // USER CONTROL
   app.post('/signup', SignupController.create);

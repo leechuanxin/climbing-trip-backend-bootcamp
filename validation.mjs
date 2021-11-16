@@ -41,6 +41,14 @@ const validatePassword = (userInfo, type) => {
   return obj;
 };
 
+const validateTripName = (tripInfo) => {
+  const obj = {};
+  if (!tripInfo.name || tripInfo.name.trim === '') {
+    obj.tripname_invalid = 'Please type in a trip name.';
+  }
+  return obj;
+};
+
 export const validateUserInfo = (userInfo) => ({
   ...userInfo,
   ...validateRealName(userInfo, 'signup'),
@@ -58,4 +66,9 @@ export const validateLogin = (userInfo) => ({
   ...userInfo,
   ...validateUserName(userInfo, 'login'),
   ...validatePassword(userInfo, 'login'),
+});
+
+export const validateTripInfo = (tripInfo) => ({
+  ...tripInfo,
+  ...validateTripName(tripInfo),
 });
